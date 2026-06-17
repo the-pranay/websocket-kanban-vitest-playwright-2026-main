@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 
-const UPLOAD_URL = "http://localhost:5000/upload";
+const isProd = import.meta.env.PROD;
+const UPLOAD_URL = isProd ? "/_/backend/upload" : "http://localhost:5000/upload";
 
 /**
  * Modal form for creating or editing a task.

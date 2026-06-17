@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { io } from "socket.io-client";
 
-const SOCKET_URL = "http://localhost:5000";
+const isProd = import.meta.env.PROD;
+const SOCKET_URL = isProd ? undefined : "http://localhost:5000";
 
 /**
  * Custom hook that manages the Socket.IO connection and task state.
@@ -15,6 +16,7 @@ export function useSocket() {
 
   useEffect(() => {
     const socket = io(SOCKET_URL, {
+      path: isProd ? "/_/backend/socket.io" : "/socket.io",
       transports: ["websocket", "polling"],
       reconnection: true,
       reconnectionAttempts: 10,

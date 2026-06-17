@@ -65,7 +65,9 @@ app.post("/upload", (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: "No file provided" });
     }
-    const fileUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+    const isProd = process.env.NODE_ENV === "production";
+    const baseUrl = isProd ? "/_/backend" : "http://localhost:5000";
+    const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
     res.json({
       url: fileUrl,
       name: req.file.originalname,
