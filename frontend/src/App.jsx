@@ -8,6 +8,7 @@ function App() {
     tasks,
     connected,
     loading,
+    offline,
     createTask,
     updateTask,
     moveTask,
@@ -21,10 +22,14 @@ function App() {
         <div className="header-actions">
           <div className="connection-status" data-testid="connection-status">
             <span
-              className={`status-dot ${connected ? "connected" : ""}`}
+              className={`status-dot ${connected ? "connected" : offline ? "offline" : ""}`}
               data-testid="status-dot"
             />
-            {connected ? "Connected" : "Reconnecting..."}
+            {connected
+              ? "Connected"
+              : offline
+                ? "Offline Mode"
+                : "Reconnecting..."}
           </div>
         </div>
       </header>

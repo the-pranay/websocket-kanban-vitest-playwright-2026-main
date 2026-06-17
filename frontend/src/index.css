@@ -185,6 +185,11 @@ body {
   box-shadow: 0 0 8px rgba(52, 199, 89, 0.4);
 }
 
+.status-dot.offline {
+  background: var(--amber);
+  box-shadow: 0 0 8px rgba(255, 149, 0, 0.4);
+}
+
 .app-content {
   flex: 1;
   padding: var(--space-xl);
